@@ -13,17 +13,17 @@ import (
 	goEnv "github.com/joho/godotenv"
 	"go.uber.org/zap"
 
-	"github-badges-backend/internal/auth"
-	"github-badges-backend/internal/config"
-	"github-badges-backend/internal/database"
-	"github-badges-backend/internal/logger"
-	"github-badges-backend/internal/mailer"
-	"github-badges-backend/internal/poster"
-	"github-badges-backend/internal/scheduler"
-	"github-badges-backend/internal/server"
-	controllers "github-badges-backend/internal/server/controllers"
-	"github-badges-backend/internal/stats"
-	"github-badges-backend/internal/user"
+	"github.com/ohhcgan/badges-srv/internal/auth"
+	"github.com/ohhcgan/badges-srv/internal/config"
+	"github.com/ohhcgan/badges-srv/internal/database"
+	"github.com/ohhcgan/badges-srv/internal/logger"
+	"github.com/ohhcgan/badges-srv/internal/mailer"
+	"github.com/ohhcgan/badges-srv/internal/poster"
+	"github.com/ohhcgan/badges-srv/internal/scheduler"
+	"github.com/ohhcgan/badges-srv/internal/server"
+	controllers "github.com/ohhcgan/badges-srv/internal/server/controllers"
+	"github.com/ohhcgan/badges-srv/internal/stats"
+	"github.com/ohhcgan/badges-srv/internal/user"
 )
 
 var cfg *config.Config = nil

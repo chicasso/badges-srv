@@ -7,10 +7,10 @@ import (
 
 	"go.uber.org/zap"
 
-	"github-badges-backend/internal/auth"
-	"github-badges-backend/internal/config"
-	"github-badges-backend/internal/middlewares"
-	controllers "github-badges-backend/internal/server/controllers"
+	"github.com/ohhcgan/badges-srv/internal/auth"
+	"github.com/ohhcgan/badges-srv/internal/config"
+	"github.com/ohhcgan/badges-srv/internal/middlewares"
+	controllers "github.com/ohhcgan/badges-srv/internal/server/controllers"
 
 	"github.com/gin-gonic/gin"
 )

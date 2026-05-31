@@ -1,8 +1,9 @@
-module github-badges-backend
+module github.com/ohhcgan/badges-srv
 
 go 1.26
 
 require (
+	github.com/confluentinc/confluent-kafka-go/v2 v2.14.1
 	github.com/fogleman/gg v1.3.0
 	github.com/gin-gonic/gin v1.12.0
 	github.com/golang-jwt/jwt/v5 v5.2.1

@@ -19,8 +19,8 @@ import (
 	"golang.org/x/image/font/gofont/gobold"
 	"golang.org/x/image/font/gofont/goregular"
 
-	"github-badges-backend/internal/stats"
-	"github-badges-backend/internal/user"
+	"github.com/ohhcgan/badges-srv/internal/stats"
+	"github.com/ohhcgan/badges-srv/internal/user"
 )
 
 /* canvasW and canvasH matches the standard Open Graph image ratio. */

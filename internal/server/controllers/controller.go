@@ -9,10 +9,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 
-	"github-badges-backend/internal/auth"
-	"github-badges-backend/internal/stats"
-	"github-badges-backend/internal/user"
-	"github-badges-backend/pkg/dto"
+	"github.com/ohhcgan/badges-srv/internal/auth"
+	"github.com/ohhcgan/badges-srv/internal/stats"
+	"github.com/ohhcgan/badges-srv/internal/user"
+	"github.com/ohhcgan/badges-srv/pkg/dto"
 )
 
 type Controllers struct {

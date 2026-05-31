@@ -11,9 +11,9 @@ import (
 	"go.uber.org/zap"
 	"golang.org/x/oauth2"
 
-	"github-badges-backend/internal/crypto"
-	ghClient "github-badges-backend/internal/github"
-	"github-badges-backend/internal/user"
+	"github.com/ohhcgan/badges-srv/internal/crypto"
+	ghClient "github.com/ohhcgan/badges-srv/internal/github"
+	"github.com/ohhcgan/badges-srv/internal/user"
 )
 
 /**
