@@ -8,11 +8,11 @@ import (
 	"go.uber.org/zap"
 	"golang.org/x/sync/errgroup"
 
-	"github-badges-backend/internal/mailer"
-	"github-badges-backend/internal/poster"
-	controllers "github-badges-backend/internal/server/controllers"
-	"github-badges-backend/internal/stats"
-	"github-badges-backend/internal/user"
+	"github.com/ohhcgan/badges-srv/internal/mailer"
+	"github.com/ohhcgan/badges-srv/internal/poster"
+	controllers "github.com/ohhcgan/badges-srv/internal/server/controllers"
+	"github.com/ohhcgan/badges-srv/internal/stats"
+	"github.com/ohhcgan/badges-srv/internal/user"
 )
 
 const (

@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github-badges-backend/internal/stats"
-	"github-badges-backend/internal/user"
+	"github.com/ohhcgan/badges-srv/internal/stats"
+	"github.com/ohhcgan/badges-srv/internal/user"
 )
 
 type Mailer struct {
@@ -91,7 +91,10 @@ func (m *Mailer) SendPoster(userInfo *user.User, statsInfo *stats.MonthlyStats, 
 
 	subject := fmt.Sprintf("Your GitHub Activity Report - %s", statsInfo.StatMonth.Format("January 2006"))
 	htmlBody := buildHTML(userInfo, statsInfo)
-	msg := buildMIME(m.from, userInfo.Email, subject, htmlBody, posterPNG)
+	msg, err := buildMIME(m.from, userInfo.Email, subject, htmlBody, posterPNG)
+	if err != nil {
+		return fmt.Errorf("could not build mime message: %w", err)
+	}
 
 	auth := smtp.PlainAuth("", m.username, m.password, m.host)
 	addr := fmt.Sprintf("%s:%d", m.host, m.port)
@@ -102,7 +105,7 @@ func (m *Mailer) SendPoster(userInfo *user.User, statsInfo *stats.MonthlyStats, 
  * buildMIME constructs a multipart/related MIME message with an HTML body
  * referencing the poster image via CID, plus the image as a base64 inline part.
  */
-func buildMIME(from, to, subject, htmlBody string, posterPNG []byte) []byte {
+func buildMIME(from, to, subject, htmlBody string, posterPNG []byte) ([]byte, error) {
 	var bodyBuf bytes.Buffer
 	mw := multipart.NewWriter(&bodyBuf)
 
@@ -111,7 +114,10 @@ func buildMIME(from, to, subject, htmlBody string, posterPNG []byte) []byte {
 	htmlHeader.Set("Content-Type", "text/html; charset=UTF-8")
 	htmlHeader.Set("Content-Transfer-Encoding", "quoted-printable")
 	htmlPart, _ := mw.CreatePart(htmlHeader)
-	htmlPart.Write([]byte(htmlBody))
+	_, err := htmlPart.Write([]byte(htmlBody))
+	if err != nil {
+		return nil, fmt.Errorf("error creating multipart body: %w", err)
+	}
 
 	/* Inline PNG part referenced by CID */
 	imgHeader := textproto.MIMEHeader{}
@@ -122,11 +128,21 @@ func buildMIME(from, to, subject, htmlBody string, posterPNG []byte) []byte {
 	imgPart, _ := mw.CreatePart(imgHeader)
 
 	enc := base64.NewEncoder(base64.StdEncoding, imgPart)
-	enc.Write(posterPNG)
+	_, err = enc.Write(posterPNG)
+	if err != nil {
+		return nil, fmt.Errorf("error creating base64 encoder: %w", err)
+	}
 
-	enc.Close()
+	err = enc.Close()
+	if err != nil {
+		_ = mw.Close()
+		return nil, fmt.Errorf("error creating base64 encoder: %w", err)
+	}
 
-	mw.Close()
+	err = mw.Close()
+	if err != nil {
+		return nil, fmt.Errorf("error closing multipart writer: %w", err)
+	}
 
 	var msg bytes.Buffer
 	fmt.Fprintf(&msg, "From: %s\r\n", from)
@@ -136,7 +152,7 @@ func buildMIME(from, to, subject, htmlBody string, posterPNG []byte) []byte {
 	fmt.Fprintf(&msg, "Content-Type: multipart/related; boundary=%q\r\n\r\n", mw.Boundary())
 	msg.Write(bodyBuf.Bytes())
 
-	return msg.Bytes()
+	return msg.Bytes(), nil
 }
 
 /**

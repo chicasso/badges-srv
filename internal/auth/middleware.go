@@ -4,8 +4,9 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github-badges-backend/pkg/dto"
 	"net/http"
+
+	"github.com/ohhcgan/badges-srv/pkg/dto"
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"

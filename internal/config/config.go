@@ -37,6 +37,8 @@ type Config struct {
 	AdminKey string `envconfig:"ADMIN_KEY" default:""`
 
 	Env EnvType `envconfig:"ENVIRONMENT" default:""`
+
+	BootStrapServers string `envconfig:"BOOTSTRAP_SERVERS" default:"localhost:9092"`
 }
 
 func Load() (*Config, error) {

@@ -3,7 +3,7 @@ package logger
 import (
 	"fmt"
 
-	"github-badges-backend/internal/config"
+	"github.com/ohhcgan/badges-srv/internal/config"
 
 	"go.uber.org/zap"
 )

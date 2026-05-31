@@ -1,4 +1,7 @@
 .vscode
+.idea
 .claude
 .env
 bin
+idea
+todos

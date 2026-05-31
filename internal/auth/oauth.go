@@ -15,11 +15,11 @@ import (
 	"golang.org/x/oauth2"
 	githubOAuth "golang.org/x/oauth2/github"
 
-	"github-badges-backend/internal/config"
-	"github-badges-backend/internal/crypto"
-	githubClient "github-badges-backend/internal/github"
-	"github-badges-backend/internal/user"
-	"github-badges-backend/pkg/dto"
+	"github.com/ohhcgan/badges-srv/internal/config"
+	"github.com/ohhcgan/badges-srv/internal/crypto"
+	githubClient "github.com/ohhcgan/badges-srv/internal/github"
+	"github.com/ohhcgan/badges-srv/internal/user"
+	"github.com/ohhcgan/badges-srv/pkg/dto"
 )
 
 const (
